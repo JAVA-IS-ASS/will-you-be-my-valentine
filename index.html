@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff7eb3, #ff758c);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            padding: 10px; /* Added some padding for small screens */
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            flex-wrap: wrap; /* Allow buttons to stack on mobile */
+        }
+        button {
+            background: white;
+            color: #ff758c;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            width: 120px; /* Ensuring buttons don't get too small */
+        }
+        button:hover {
+            background: #ff5271;
+            color: white;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            clip-path: path('M24.5 3.9c-5.8-6.4-15.5-6.4-21.3 0-6.5 7.1-5.5 17.8 0 24.7l21.3 23.5 21.3-23.5c5.5-6.9 6.5-17.6 0-24.7-5.8-6.4-15.5-6.4-21.3 0z');
+            animation: floatUp 5s infinite;
+            opacity: 0.7;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1rem;
+                max-width: 90%;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+                width: 100px;
+            }
+        }
+        /* Extra adjustments for very small screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            button {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+                width: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Will You Be My Valentine? ❤️</h1>
+        <p>You are the most incredible person I have ever met. Your kindness, laughter, and smile make every day brighter. I feel so lucky to have you in my life, and I can’t imagine a better person to share my heart with. Will you be my valentine? ❤️</p>
+        <div class="buttons">
+            <button onclick="showMessage('yes')">Yes</button>
+            <button id="noButton" onclick="showMessage('no')">No</button>
+        </div>
+        <p id="response" style="margin-top: 20px; font-size: 1.2rem;"></p>
+    </div>
+
+    <!-- Floating hearts -->
+    <div class="heart" style="top: 90%; left: 20%; background-image: url('image/her.png.jpg'); animation-duration: 4s;"></div>
+    <div class="heart" style="top: 80%; left: 50%; background-image: url('image/her.png.jpg'); animation-duration: 6s;"></div>
+    <div class="heart" style="top: 85%; left: 80%; background-image: url('image/her.png.jpg'); animation-duration: 5.5s;"></div>
+    <div class="heart" style="top: 95%; left: 30%; background-image: url('image/her.png.jpg'); animation-duration: 4.8s;"></div>
+
+    <script>
+        function showMessage(answer) {
+            const response = document.getElementById('response');
+            if (answer === 'yes') {
+                response.textContent = "You’ve brought a light into my life that I never knew was missing. From the moment we met, everything changed for the better. You’ve shown me what true love feels like, and I’m grateful every day for your kindness, laughter, and all the little things you do that make me smile. You make every moment feel special, and being with you has made me the happiest I’ve ever been. I love you more than words can express, and I can’t wait to continue this journey together, building memories and cherishing every second. Forever yours. ❤️";
+            } else {
+                response.textContent = "Aww! I guess there's always next year! 😅";
+            }
+        }
+
+        // Add more hearts dynamically
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.backgroundImage = "url('image/her.png.jpg')";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 500);
+
+        // Make the "No" button run away
+        const noButton = document.getElementById('noButton');
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
+
+
+
